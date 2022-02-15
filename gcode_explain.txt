@@ -1,0 +1,24 @@
+G21                                    ;trabajar con milímetros
+G90                                    ;usar posicionamiento absoluto
+M82                                    ;colocar el extrusor en posicionamiento absoluto
+M107                                   ;apagar ventilador
+G28 X0 Y0                              ;mover el extrusor a la posición 0,0 del plano
+G28 Z0                                 ;bajar el extrusor hasta la posición 0 en altura
+G1 F9000                               ;establecer velocidad a 9000 milímetros/minuto
+M117 Imprimiendo…                      ;escribir mensaje en el LCD
+G0 F9000 X58.972 Y85.198 Z0.300        ;posicionamiento rápido en 58.972,85.198,0.300                                
+G1 F1200 X60.320 Y84.421 E0.02927      ;establecer velocidad a 1200 milímetros/minuto, posicionar en 60.320,84.421 y extruir a 0.02927
+G1 X61.800 Y83.771 E0.05967            ;posicionar en 61.800,83.771 y extruir a 0.05967
+G1 X63.363 Y83.286 E0.09046            ;posicionar en 63.363,83.286 y extruir a 0.09046
+...                                    ;codigo eliminado hasta primera capa para el ejemplo                                     
+M106 S127                              ;encender ventilador a la mitad de potencia (127)
+G0 F9000 X62.284 Y90.092 Z0.400        ;posicionar rápidamente en 62.284,90.092,0.400
+G1 F540 X61.718 Y90.448 E4.19702       ;posicionar en 61.718,90.448 y extruir a 4.19702
+G1 X61.271 Y90.723 E4.20031            ;posicionar en 61.271,90.723 y extruir a 4.20031
+G1 X60.679 Y91.092 E4.20468            ;posicionar en 60.679,91.092 y extruir a 4.20468
+                                       ;codigo eliminado hasta final extrusion para el ejemplo
+M104 S0                                ;apagar extrusor
+M140 S0                                ;apagar la cama caliente
+G1 E-1 F300                            ;retraer filamento (para liberar presión)
+G28 X0 Y0                              ;mover a 0,0
+M84                                    ;apagar motores

@@ -1,0 +1,22 @@
+{
+  "name": "hospitallafe_frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielei9/HospitalLaFe_FrontEnd.git"
+  },
+  "author": "Daniel Burruchaga Sola",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielei9/HospitalLaFe_FrontEnd/issues"
+  },
+  "homepage": "https://github.com/danielei9/HospitalLaFe_FrontEnd#readme",
+  "dependencies": {
+    "python-shell": "^3.0.1"
+  }
+}
