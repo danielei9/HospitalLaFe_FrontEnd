@@ -3,7 +3,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './styles/App.css'
 
 import { AuthProvider } from "./context/index";
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import history from "./history";
 import { LoginPage } from './components/login.component'
 import SignUp from './components/signup.component'
@@ -14,7 +14,6 @@ import NavBar from './components/NavBar.component'
 import { useAuth } from "./Hooks";
 import { PrivateRoute } from './Router/PrivateRoute'
 import { NextPageFromLogin } from './Router/NextPageFromLogin'
-import { useNavigate } from "react-router-dom";
 import { MQTTProvider } from './context/MqttContext';
 
 function App() {
