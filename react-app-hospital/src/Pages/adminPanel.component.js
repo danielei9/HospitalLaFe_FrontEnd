@@ -4,6 +4,7 @@ import { useAuth } from "../Hooks/index";
 import { getAllUsers } from '../Logic/user';
 import { Input, Space } from 'antd';
 import $ from 'jquery';
+
 const { Search } = Input;
 
 // import { FontAwesomeIcon } from "@fortawesome/fontawesome"
@@ -14,25 +15,51 @@ export default function AdminPanel(props) {
   const [searchText, setSearchText] = useState('');
   const [data, setData] = useState([]);
 
-  function handleDelete(){
-    
+  async function handleDelete(item) {
+    console.log(accessToken)
+    console.log(item)
+    const userConfirmed = window.confirm(`¿Estás seguro de que quieres eliminar el usuario con email ${item.email}?`);
+
+    if (userConfirmed) {
+      console.log(`http://localhost:7878/user/${item._id}`)
+
+      $.ajax({
+        url: `http://127.0.0.1:7878/user/${item._id}`,
+        method: 'DELETE',
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader('Authorization', accessToken);
+        },
+        success: (data) => {
+          console.log('Datos eliminados correctamente:', data);
+          getUsers()
+        },
+        error: (error) => {
+          console.error('Error al eliminar datos:', error);
+        }
+      });
+
+    } else {
+      console.log('Acción cancelada por el usuario');
+    }
+
   }
 
-  function handleEdit(){
-    
-  }
   function putUserInTable() {
     return (
       // searchResults?.map(item => (
-        filteredData?.map((item, index) => (
+      filteredData?.map((item, index) => (
         <tr>
           <th scope="row" key={index}>{index}</th>
           <td>{item.name}</td>
           <td>{item.email}</td>
           <td>{item.createdAt}</td>
           <td>
-          {/* <FontAwesomeIcon icon={faTrashAlt} className="delete-button" onClick={handleDelete} />
-          <FontAwesomeIcon icon={faEdit} className="edit-button" onClick={handleEdit} /> */}
+            {/* <button className="btn" onClick={() => { console.log(item) }}>
+            ✏️
+            </button> */}
+            <button className="btn" onClick={() => { handleDelete(item) }}>
+              ❌
+            </button>
           </td>
         </tr>
       ))
@@ -43,11 +70,11 @@ export default function AdminPanel(props) {
     setSearchText(text);
   }
 
-  const filteredData = data.filter((row) =>
+  const filteredData = data ? data.filter((row) =>
     Object.values(row).some((value) =>
       value.toString().toLowerCase().includes(searchText.toLowerCase())
     )
-  );
+  ) : [];
 
   useEffect(() => {
     getUsers();
@@ -92,8 +119,8 @@ export default function AdminPanel(props) {
                             <td>{user.name}</td>
                             <td>{user.username}</td>
                             <td>
-                              <button className="btn btn-primary" onClick={() => { props.value = !props.value; console.log(props.value) }}>
-                                Editar
+                              <button className="btn btn-primary" disabled={true} onClick={() => { props.value = !props.value; console.log(props.value) }}>
+                                ✏️
                               </button>
                               {/* <button className="btn btn-danger" onClick={() => { props.value = !props.value; console.log(props.value) }}>
                                 Eliminar
@@ -103,7 +130,8 @@ export default function AdminPanel(props) {
                         }
                       </tr>
                     </tbody>
-                  </table>                                    </div>
+                  </table>
+                </div>
               </div>
             </div>
 
