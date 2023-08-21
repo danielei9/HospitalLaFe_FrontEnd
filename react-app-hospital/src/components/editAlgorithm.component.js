@@ -36,7 +36,7 @@ export default function EditAlgorithm() {
 
             <div className="d-grid">
               <button type="submit" className="btn btn-primary">
-                Sign Up
+                Cambio de variables
               </button>
             </div>
           </form>
