@@ -155,7 +155,7 @@ export default function AdminPanel(props) {
                           <th scope="col">Correo</th>
                           <th scope="col">Alias</th>
                           <th scope="col">Fecha de creación</th>
-                          <th scope="col">Opciones</th>
+                          <th scope="col">Eliminar</th>
                         </tr>
                       </thead>
                       <tbody>
