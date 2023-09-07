@@ -5,8 +5,10 @@ from hospiPython import *
 class Service():
     def __init__(self):
         self.status = 0
+        # Public Mqtt Server to test
         self.mqttCredentials = MqttCredentials("broker.hivemq.com","","",1883)
-        # self.mqttCredentials = MqttCredentials("192.168.4.1","ysolve","ysolve2022",1883)
+        # Local Mqtt Server
+        self.mqttCredentials = MqttCredentials("192.168.4.1","ysolve","ysolve2022",1883)
         self.mqttController = MqttConnection(self.mqttCredentials)
         self.mqttController.create_loop_mqtt_receive(self.processRequest)
         self.actualData = {
@@ -16,8 +18,9 @@ class Service():
       "dni": "not-provided",
       "selectedOption": "not-provided"
    }
+    
     """
-    Type Request ServiceMachine
+    EXAMPLE : Type Request ServiceMachine
     {
         "typeRequest": 0,
         "data": {
@@ -37,7 +40,7 @@ class Service():
         if(request["typeRequest"] == 0):
             ## Iniciar Machine
             self.actualData = request["data"]
-            # startMachine(request["data"]["quantity"])
+            startMachine(request["data"]["quantity"])
             print("startMachine")
         if(request["typeRequest"] == 1):
             ## Procesar la request y hacer una peticion al servidor para almacenar la medida

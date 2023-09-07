@@ -10,10 +10,6 @@ def removeComment(string):
 		return string[:string.index(';')]
 
 def startMachine(type):
-	# parser = argparse.ArgumentParser(description='gcode sender.')
-	# parser.add_argument('-p','--port',help='Input USB port',required=True)
-	# parser.add_argument('-f','--file',help='Gcode file name',required=True)
-	# args = parser.parse_args()
 	port= "/dev/ttyUSB0"
 	file = "/home/pi/Desktop/HospitalLaFe_FrontEnd/gcode_explain.txt"
 	## show values ##
@@ -21,7 +17,6 @@ def startMachine(type):
 	print( "Gcode file: %s" % file )
 	
 	# Open serial port
-	#s = serial.Serial('/dev/ttyACM0',115200)
 	s = serial.Serial(port,115200)
 	print( 'Opening Serial Port')
 	
